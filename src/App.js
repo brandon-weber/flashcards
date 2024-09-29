@@ -7,6 +7,7 @@ const App = () => {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [mode, setMode] = useState('hiragana');
   const [shuffledSet, setShuffledSet] = useState([]);
+  const [showJapaneseSide, setShowJapaneseSide] = useState(true); // New state variable
 
   useEffect(() => {
     let newSet;
@@ -29,6 +30,7 @@ const App = () => {
 
   const nextCard = () => {
     setCurrentCardIndex((prevIndex) => (prevIndex + 1) % shuffledSet.length);
+    setShowJapaneseSide(true); // Ensure the Japanese side is shown
   };
 
   const shuffleCards = () => {
@@ -66,6 +68,8 @@ const App = () => {
           <FlashCard
             front={shuffledSet[currentCardIndex].front}
             back={shuffledSet[currentCardIndex].back}
+            showJapaneseSide={showJapaneseSide} // Pass the state
+            toggleSide={() => setShowJapaneseSide(!showJapaneseSide)} // Pass the toggle function
           />
           <div className="mt-4 w-64 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
             <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: `${progress}%` }}></div>
