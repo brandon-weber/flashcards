@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const FlashCard = ({ front, back }) => {
-  const [isFlipped, setIsFlipped] = useState(false);
-
+const FlashCard = ({ front, back, showJapaneseSide, toggleSide }) => {
   const handleClick = () => {
-    setIsFlipped(!isFlipped);
+    toggleSide();
   };
 
   return (
@@ -13,8 +11,8 @@ const FlashCard = ({ front, back }) => {
       onClick={handleClick}
     >
       <div className="text-center">
-        <h2 className="text-6xl font-bold mb-2">{isFlipped ? back : front}</h2>
-        <p className="text-xl">{isFlipped ? "English" : "Japanese"}</p>
+        <h2 className="text-6xl font-bold mb-2">{showJapaneseSide ? front : back}</h2>
+        <p className="text-xl">{showJapaneseSide ? "Japanese" : "English"}</p>
       </div>
     </div>
   );
