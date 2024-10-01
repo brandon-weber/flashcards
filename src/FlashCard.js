@@ -1,8 +1,8 @@
 import React from 'react';
 
-const FlashCard = ({ front, back, showFront, setShowFront }) => {
+const FlashCard = ({ front, back, showJapaneseSide, toggleSide }) => {
   const handleClick = () => {
-    setShowFront(!showFront);
+    toggleSide();
   };
 
   return (
@@ -11,8 +11,8 @@ const FlashCard = ({ front, back, showFront, setShowFront }) => {
       onClick={handleClick}
     >
       <div className="text-center">
-        <h2 className="text-6xl font-bold mb-2">{showFront ? front : back}</h2>
-        <p className="text-xl">{showFront ? "Japanese" : "English"}</p>
+        <h2 className="text-6xl font-bold mb-2">{showJapaneseSide ? front : back}</h2>
+        <p className="text-xl">{showJapaneseSide ? "Japanese" : "English"}</p>
       </div>
     </div>
   );
