@@ -7,6 +7,7 @@ const App = () => {
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [mode, setMode] = useState('hiragana');
   const [shuffledSet, setShuffledSet] = useState([]);
+  const [showFront, setShowFront] = useState(true);
 
   useEffect(() => {
     let newSet;
@@ -25,15 +26,18 @@ const App = () => {
     }
     setShuffledSet(shuffleArray(newSet));
     setCurrentCardIndex(0);
+    setShowFront(true);  // Reset to show front when changing modes
   }, [mode]);
 
   const nextCard = () => {
     setCurrentCardIndex((prevIndex) => (prevIndex + 1) % shuffledSet.length);
+    setShowFront(true);  // Show front when moving to the next card
   };
 
   const shuffleCards = () => {
     setShuffledSet(shuffleArray([...shuffledSet]));
     setCurrentCardIndex(0);
+    setShowFront(true);  // Show front when shuffling cards
   };
 
   const progress = ((currentCardIndex + 1) / shuffledSet.length) * 100;
@@ -66,6 +70,8 @@ const App = () => {
           <FlashCard
             front={shuffledSet[currentCardIndex].front}
             back={shuffledSet[currentCardIndex].back}
+            showFront={showFront}
+            setShowFront={setShowFront}
           />
           <div className="mt-4 w-64 bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
             <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: `${progress}%` }}></div>
