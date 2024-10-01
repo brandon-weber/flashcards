@@ -26,7 +26,7 @@ const App = () => {
     }
     setShuffledSet(shuffleArray(newSet));
     setCurrentCardIndex(0);
-    setShowFront(true);  // Reset to show front when changing modes
+    setShowJapaneseSide(true);  // Reset to show front when changing modes
   }, [mode]);
 
   const nextCard = () => {
@@ -37,7 +37,7 @@ const App = () => {
   const shuffleCards = () => {
     setShuffledSet(shuffleArray([...shuffledSet]));
     setCurrentCardIndex(0);
-    setShowFront(true);  // Show front when shuffling cards
+    setShowJapaneseSide(true);  // Show front when shuffling cards
   };
 
   const progress = ((currentCardIndex + 1) / shuffledSet.length) * 100;
